@@ -1,0 +1,500 @@
+@font-face {
+	font-family: 'Prosorova Nastasia';
+	src: url('./Prosorovanastasiafont-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+:root {
+	--bg-top: #FFC800;
+	--bg-mid: #FF404C;
+	--bg-bottom: #f7b733;
+	--text-color: #d13030;
+	--white: #ffffff;
+}
+
+/* Правильный базовый сброс стилей */
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	min-height: 100vh;
+	position: relative;
+	font-family: 'Prosorova Nastasia', sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 50px;
+	overflow-x: hidden;
+}
+
+/* Контейнер-подложка для фона */
+.lava-lamp {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(135deg, #FFC800 0%, #FF404C 100%);
+	z-index: -1;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+/* Общие стили для статичных пятен лавовой лампы */
+.spot {
+	position: absolute;
+	border-radius: 50%;
+	/* Сильное размытие (60px-80px) превращает круги в мягкие «акварельные» пятна */
+	filter: blur(70px);
+	mix-blend-mode: multiply;
+	/* Красиво смешивает красный цвет с желтым фоном */
+	opacity: 0.75;
+	/* Делает пятна полупрозрачными и нежными */
+}
+
+/* Расставляем пятна по разным углам экрана, меняя размеры и цвета */
+.spot-1 {
+	width: 320px;
+	height: 320px;
+	top: -50px;
+	left: -80px;
+	background-color: #FF404C;
+	/* Насыщенный красный */
+}
+
+.spot-2 {
+	width: 480px;
+	height: 480px;
+	top: 20%;
+	right: -180px;
+	background-color: #d13030;
+	/* Твой фирменный темный оттенок */
+}
+
+.spot-3 {
+	width: 280px;
+	height: 280px;
+	bottom: 35%;
+	left: -60px;
+	background-color: #FF404C;
+}
+
+.spot-4 {
+	width: 400px;
+	height: 400px;
+	bottom: -120px;
+	right: 10%;
+	background-color: #d13030;
+}
+
+.spot-5 {
+	width: 220px;
+	height: 220px;
+	top: 50%;
+	left: 35%;
+	background-color: #FF404C;
+	opacity: 0.5;
+	/* Чуть бледнее в самом центре */
+}
+
+.container {
+	max-width: 480px;
+	width: 100%;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.desktop-column {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.section-title {
+	width: 100%;
+	display: flex;
+}
+
+.section-title--center {
+	justify-content: center;
+}
+
+.section-title--left {
+	justify-content: flex-start;
+}
+
+h2.brush-title {
+	font-family: inherit;
+	background-color: var(--white);
+	color: var(--text-color);
+	padding: 10px 30px;
+	border-radius: 30px 10px 40px 15px;
+	display: inline-block;
+	font-size: 32px;
+	text-align: center;
+}
+
+.polaroid-container {
+  position: relative; 
+  width: min(100%, 400px);
+  margin: 0 auto 40px auto; 
+  padding: 40px 0; 
+  z-index: 1;
+}
+
+/* Создаем фон отдельным слоем, который умеет ломать границы контейнера */
+.polaroid-container::before {
+  content: '';
+  position: absolute;
+  /* Поднимаем фон на 60px вверх (20px от контейнера + 40px от самого блока), чтобы он прилип к краю экрана */
+  top: -60px; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  /* Делаем фон выше, чтобы компенсировать сдвиг и оставить место для размытия */
+  height: calc(100% + 120px); 
+  background-image: url('images/bg-images/bg_love.svg');
+  background-size: cover; 
+  background-position: top center; /* Привязываем к верху */
+  background-repeat: no-repeat;
+  z-index: -1; 
+  
+  /* Размываем фон к низу: сверху до 75% он четкий (black), а к 100% становится прозрачным */
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+}
+
+.polaroid {
+	font-weight: 400;
+	text-transform: uppercase;
+	font-size: 28px;
+	line-height: 100%;
+	letter-spacing: 0%;
+	background: var(--white);
+	transform: rotate(11deg);
+	padding: 10px;
+	color: #FF3F3E;
+	text-align: center;
+}
+
+.polaroid img {
+	background-color: white;
+	width: 100%;
+	height: auto;
+	display: block;
+	min-height: 200px;
+}
+
+.polaroid.right-tilt {
+	transform: rotate(4deg);
+}
+
+.polaroid--compact {
+	width: 180px;
+	font-size: 16px;
+}
+
+.polaroid--compact img {
+	min-height: 120px;
+}
+
+h2.brush-title {
+	position: relative;
+	font-family: inherit;
+	font-size: 48px;
+	text-align: center;
+	display: inline-block;
+	padding: 20px 30px;
+	background-color: transparent;
+	border-radius: 0;
+	color: #000000;
+	/* Делаем текст черным */
+	mix-blend-mode: screen;
+	/* Черный станет прозрачным, а белое облако останется белым */
+}
+
+h2.brush-title::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 65%;
+	transform: translate(-50%, -50%);
+	width: 250%;
+	min-width: 320px;
+	height: 180%;
+	background-image: url('images/bg-images/bg_cloud.svg');
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: cover;
+	z-index: -1;
+}
+
+/* Очищаем span от старых глючных свойств (оставляем просто черный цвет) */
+h2.brush-title span {
+	color: #000000;
+}
+
+.date-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* Возвращаем center вместо stretch */
+	font-size: 43px;
+	font-weight: bold;
+	gap: 30px;
+	/* Увеличиваем gap, так как уберем padding у спанов */
+	color: white;
+}
+
+.date-section span {
+	display: inline-flex;
+	align-items: center;
+	position: relative;
+	/* Необходимо для абсолютного позиционирования линии */
+}
+
+/* Рисуем разделители ровно 74px высотой */
+.date-section span:not(:last-child)::after {
+	content: '';
+	position: absolute;
+	right: -15px;
+	/* Сдвигаем линию ровно на середину отступа (gap / 2) */
+	top: 50%;
+	transform: translateY(-50%);
+	/* Центрируем по вертикали */
+	width: 2px;
+	height: 74px;
+	/* Жестко фиксируем нужную высоту */
+	background-color: var(--white);
+}
+
+.date-section .big-num {
+	font-size: 100px;
+	line-height: 1;
+	/* Чтобы невидимый контейнер шрифта не смещал центрирование */
+}
+
+.where-section {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.where-text {
+	flex: 1;
+}
+
+.where-text h3 {
+	font-size: 28px;
+	margin-bottom: 10px;
+}
+
+.where-text p {
+	font-size: 14px;
+}
+
+.timeline {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	position: relative;
+}
+
+.time-item {
+	background: var(--white);
+	color: var(--text-color);
+	border: 3px solid var(--text-color);
+	border-radius: 10px;
+	padding: 10px;
+	width: fit-content;
+	text-align: center;
+	position: relative;
+}
+
+.time-item:nth-child(even) {
+	align-self: flex-end;
+}
+
+.time-item .time {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.time-item .event {
+	font-family: inherit;
+	font-size: 20px;
+}
+
+.dress-code {
+	text-align: center;
+}
+
+.dress-code p {
+	text-align: center;
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+.palette {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 15px 0;
+}
+
+.color-circle {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #fff;
+	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.rsvp-form {
+	background: rgba(255, 255, 255, 0.95);
+	padding: 20px;
+	border-radius: 15px;
+	color: var(--text-color);
+	font-family: inherit;
+	font-size: 22px;
+	border: 2px dashed var(--text-color);
+}
+
+.rsvp-form input[type="text"] {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0 20px 0;
+	border: 2px solid var(--text-color);
+	border-radius: 5px;
+	font-family: inherit;
+}
+
+.checkbox-group {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.checkbox-group input[type="radio"],
+.checkbox-group input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	accent-color: var(--text-color);
+}
+
+.submit-btn {
+	width: 100%;
+	background: linear-gradient(90deg, #ff7e5f, #feb47b);
+	color: var(--white);
+	border: none;
+	padding: 15px;
+	font-size: 20px;
+	font-weight: bold;
+	border-radius: 10px;
+	margin-top: 20px;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contacts {
+	text-align: center;
+	font-family: inherit;
+	font-size: 24px;
+}
+
+.contact-pill {
+	background: var(--white);
+	color: var(--text-color);
+	padding: 10px 20px;
+	border-radius: 30px;
+	display: inline-block;
+	margin: 10px 0;
+	font-weight: bold;
+	font-family: inherit;
+	font-size: 16px;
+}
+
+@media (min-width: 900px) {
+	body {
+		padding-bottom: 80px;
+	}
+
+	.container {
+		max-width: 1360px;
+		padding: 32px 24px 80px;
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr);
+		gap: 40px;
+		align-items: start;
+	}
+
+	.polaroid-container::before {
+		width: 200%;
+		-webkit-mask-image: radial-gradient(closest-side, black 40%, transparent 100%);
+		mask-image: radial-gradient(closest-side, black 40%, transparent 100%);
+	}
+
+	h2.brush-title::after {
+		left: 50%;
+		width: 150%;
+		background-position: center;
+		background-size: 100% 100%;
+	}
+
+	.desktop-column {
+		gap: 32px;
+	}
+
+	.desktop-column--left {
+		padding-right: 12px;
+	}
+
+	.desktop-column--right {
+		padding-left: 12px;
+	}
+
+	.where-section {
+		align-items: flex-start;
+	}
+
+	.polaroid {
+		width: min(100%, 520px);
+	}
+
+	.polaroid--compact {
+		width: 260px;
+		font-size: 18px;
+	}
+
+	.rsvp-form {
+		max-width: 100%;
+	}
+
+	.date-section {
+		font-size: 34px;
+	}
+
+	.date-section .big-num {
+		font-size: 60px;
+	}
+
+	.where-text h3 {
+		font-size: 38px;
+	}
+
+	.where-text p {
+		font-size: 18px;
+	}
+
+	.contacts {
+		font-size: 26px;
+	}
+}

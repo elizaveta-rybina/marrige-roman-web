@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Роман и Алеся — Свадьба</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<style>
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: #111;
+  font-family: 'Nunito', sans-serif;
+  max-width: 480px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* MARQUEE */
+.ticker {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 5px 0;
+}
+.ticker-inner {
+  display: inline-block;
+  white-space: nowrap;
+  animation: tick 22s linear infinite;
+}
+.ticker-inner span {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@keyframes tick {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ===== BLOCK 1: HERO ===== */
+.b1 {
+  background: linear-gradient(155deg, #f9a726 0%, #f26420 45%, #e83318 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+.b1-title {
+  text-align: center;
+  color: #fff;
+  font-weight: 900;
+  font-size: clamp(28px, 9.5vw, 46px);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding: 16px 16px 8px;
+}
+.b1-hearts {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0 10px;
+}
+.b1-hearts svg { width: 90%; max-width: 390px; height: auto; }
+
+/* ===== BLOCK 2: DATE ===== */
+.b2 {
+  background: linear-gradient(180deg, #f5c09a 0%, #f0a070 30%, #f5d0b0 70%, #fde8d8 100%);
+  padding: 0 0 28px;
+}
+.b2-card {
+  background: rgba(255,255,255,0.28);
+  border-radius: 24px;
+  margin: 12px 16px 20px;
+  padding: 16px 20px 18px;
+  text-align: center;
+}
+.b2-aug {
+  font-weight: 800;
+  font-size: clamp(22px, 7.5vw, 34px);
+  color: #fff;
+  display: block;
+  margin-bottom: 12px;
+}
+.cal-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  gap: 1px;
+}
+.cal-glow {
+  position: absolute;
+  width: 76px; height: 76px;
+  background: radial-gradient(circle, rgba(210,45,20,0.82) 0%, transparent 70%);
+  border-radius: 50%;
+  left: 50%; transform: translateX(-50%);
+  pointer-events: none; z-index: 0;
+}
+.cal-num {
+  font-weight: 900;
+  font-size: clamp(22px, 7.5vw, 34px);
+  color: #e84020;
+  width: clamp(34px,10vw,44px);
+  text-align: center;
+  position: relative; z-index: 1;
+}
+.cal-num.active { color: #fff; font-size: clamp(26px, 8.5vw, 38px); }
+
+/* ===== BLOCK 3: LOCATION ===== */
+.b3 {
+  background: linear-gradient(180deg, #fde8d8 0%, #f5a060 28%, #f07020 65%, #e83318 100%);
+  padding: 0 0 28px;
+}
+.b3-title {
+  font-weight: 900;
+  font-size: clamp(26px, 9vw, 40px);
+  color: #fff;
+  text-align: center;
+  line-height: 1.25;
+  padding: 16px 18px 10px;
+}
+.b3-link {
+  display: block;
+  text-align: center;
+  color: #fff;
+  font-weight: 400;
+  font-size: clamp(14px, 4.5vw, 20px);
+  text-decoration: underline;
+  letter-spacing: 0.04em;
+  padding-bottom: 14px;
+  cursor: pointer;
+}
+
+/* ===== BLOCK 4: TIMING ===== */
+.b4 {
+  background: linear-gradient(180deg, #e83318 0%, #f07020 50%, #f5a623 100%);
+  padding: 0 0 26px;
+}
+.timing-grid {
+  padding: 8px 10px 0;
+  display: flex;
+  flex-direction: column;
+}
+.t-block { display: flex; flex-direction: column; }
+.t-block.right { align-items: flex-end; text-align: right; padding-right: 20px; }
+.t-block.left  { align-items: flex-start; text-align: left; padding-left: 20px; }
+.t-time {
+  font-weight: 900;
+  font-size: clamp(38px, 13.5vw, 60px);
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+.t-label {
+  font-weight: 400;
+  font-size: clamp(16px, 5.2vw, 23px);
+  color: #fff;
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+.t-arrow { display: flex; padding: 2px 8px; }
+.t-arrow.al { justify-content: flex-start; padding-left: 28px; }
+.t-arrow.ar { justify-content: flex-end; padding-right: 28px; }
+.t-arrow svg { width: 54%; height: auto; }
+
+/* ===== BLOCK 5: DRESSCODE ===== */
+.b5 {
+  background: linear-gradient(180deg, #f5a623 0%, #fde8d8 38%, #fff0e8 100%);
+  padding: 0 0 28px;
+}
+.b5-title {
+  font-weight: 900;
+  font-size: clamp(36px, 13vw, 58px);
+  color: #fff;
+  text-align: center;
+  line-height: 1.1;
+  padding: 16px 10px 8px;
+}
+.b5-sub {
+  font-weight: 700;
+  font-size: clamp(14px, 4.8vw, 20px);
+  color: #e84020;
+  text-align: center;
+  padding: 0 18px 22px;
+  line-height: 1.45;
+}
+.circles-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0 22px;
+  overflow: hidden;
+}
+.cdot { border-radius: 50%; flex-shrink: 0; }
+
+/* ===== BLOCK 6: ANKETA ===== */
+.b6 {
+  background: linear-gradient(180deg, #fde8d8 0%, #f5b570 18%, #f07020 52%, #fde8d8 100%);
+  padding: 0 0 28px;
+}
+.anketa-card {
+  background: linear-gradient(160deg, rgba(255,210,170,0.45) 0%, rgba(240,140,60,0.38) 100%);
+  border-radius: 26px;
+  margin: 14px 12px;
+  padding: 22px 16px 20px;
+}
+.anketa-title {
+  font-weight: 900;
+  font-size: clamp(30px, 11vw, 48px);
+  color: #fff;
+  text-align: center;
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.f-input {
+  width: 100%;
+  background: transparent;
+  border: 2.5px solid rgba(255,255,255,0.75);
+  border-radius: 16px;
+  padding: 13px 16px;
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: clamp(16px, 5.5vw, 22px);
+  outline: none;
+  margin-bottom: 14px;
+}
+.f-input::placeholder { color: rgba(255,255,255,0.75); }
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.check-row input { display: none; }
+.cbox {
+  width: 48px; height: 48px;
+  border: 2.5px solid rgba(255,255,255,0.75);
+  border-radius: 12px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.check-row input:checked ~ .cbox { background: rgba(255,255,255,0.30); }
+.check-row input:checked ~ .cbox::after {
+  content: '✓'; color: #fff; font-size: 21px; font-weight: 900;
+}
+.clabel {
+  font-weight: 800;
+  font-size: clamp(17px, 5.8vw, 24px);
+  color: #fff;
+}
+.alco-title {
+  font-weight: 900;
+  font-size: clamp(17px, 5.8vw, 24px);
+  color: #fff;
+  margin: 8px 0 13px;
+}
+.submit-btn {
+  width: 100%;
+  background: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 15px 10px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: clamp(20px, 7.5vw, 30px);
+  color: #f56018;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity .2s;
+}
+.submit-btn:active { opacity: 0.85; }
+
+/* ===== BLOCK 7: CONTACTS ===== */
+.b7 {
+  background: linear-gradient(180deg, #fde8d8 0%, #f5c090 40%, #fde8d8 100%);
+  padding: 0 0 10px;
+}
+.b7-text {
+  font-weight: 800;
+  font-size: clamp(15px, 5.5vw, 22px);
+  color: #e84020;
+  text-align: center;
+  line-height: 1.65;
+  padding: 20px 20px 10px;
+}
+.b7-name {
+  display: block;
+  font-weight: 900;
+  font-size: clamp(24px, 8vw, 36px);
+  color: #e84020;
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+/* ===== BLOCK 8: FOOTER ===== */
+.b8 {
+  background: linear-gradient(155deg, #f07020 0%, #e83318 48%, #f5a623 100%);
+  padding: 0 0 50px;
+  text-align: center;
+  overflow: hidden;
+}
+.b8-title {
+  font-weight: 900;
+  font-size: clamp(34px, 12vw, 54px);
+  color: #fff;
+  padding: 24px 16px 14px;
+  display: block;
+  letter-spacing: 0.01em;
+}
+.b8-hearts { width: 80%; max-width: 320px; margin: 0 auto; }
+.b8-hearts svg { width: 100%; height: auto; }
+
+</style>
+</head>
+<body>
+
+<!-- ======== BLOCK 1: HERO ======== -->
+<section class="b1">
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span style="color:#fff;">ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; </span>
+      <span style="color:#fff;">ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; ПРИГЛАШЕНИЕ НА СВАДЬБУ &nbsp;&nbsp; </span>
+    </div>
+  </div>
+
+  <div class="b1-title">РОМАН И АЛЕСЯ</div>
+
+  <div class="b1-hearts">
+    <svg viewBox="0 0 520 295" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <path d="M120 110 C95 98 70 86 46 68"/>
+        <path d="M150 76 C150 54 128 38 112 48 C100 55 97 70 112 85 L150 122 L188 85 C203 70 200 55 188 48 C172 38 150 54 150 76Z"/>
+        <path d="M188 106 C212 116 234 116 255 112"/>
+        <circle cx="137" cy="86" r="3.5" fill="white"/>
+        <circle cx="152" cy="83" r="3.5" fill="white"/>
+        <path d="M133 96 Q143 104 155 98"/>
+        <path d="M148 125 L148 200"/>
+        <path d="M148 200 L128 236 L114 260"/>
+        <path d="M148 200 L164 236 L174 263"/>
+      </g>
+      <g stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <path d="M400 110 C425 98 450 86 474 68"/>
+        <path d="M370 76 C370 54 392 38 408 48 C420 55 423 70 408 85 L370 122 L332 85 C317 70 320 55 332 48 C348 38 370 54 370 76Z"/>
+        <path d="M332 106 C308 116 286 116 265 112"/>
+        <circle cx="357" cy="86" r="3.5" fill="white"/>
+        <circle cx="372" cy="83" r="3.5" fill="white"/>
+        <path d="M353 96 Q363 104 375 98"/>
+        <path d="M372 125 L372 200"/>
+        <path d="M372 200 L356 236 L344 260"/>
+        <path d="M372 200 L388 236 L408 263"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ======== BLOCK 2: DATE ======== -->
+<section class="b2">
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span style="color:#e84020;">ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; </span>
+      <span style="color:#e84020;">ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; ДАТА &nbsp; </span>
+    </div>
+  </div>
+  <div class="b2-card">
+    <span class="b2-aug">август 2026</span>
+    <div class="cal-row">
+      <div class="cal-glow"></div>
+      <span class="cal-num">19</span>
+      <span class="cal-num">20</span>
+      <span class="cal-num">21</span>
+      <span class="cal-num active">22</span>
+      <span class="cal-num">23</span>
+      <span class="cal-num">24</span>
+      <span class="cal-num">25</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======== BLOCK 3: LOCATION ======== -->
+<section class="b3">
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span style="color:#e84020;">МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; </span>
+      <span style="color:#e84020;">МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; МЕСТО &nbsp; </span>
+    </div>
+  </div>
+  <div class="b3-title">г. Саранск<br>база отдыха<br>"Огни Саранска"</div>
+  <a class="b3-link" href="https://yandex.ru/maps/?text=Саранск+Огни+Саранска" target="_blank">посмотреть на карте</a>
+</section>
+
+<!-- ======== BLOCK 4: TIMING ======== -->
+<section class="b4">
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span>ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; </span>
+      <span>ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; ТАЙМИНГ &nbsp; </span>
+    </div>
+  </div>
+  <div class="timing-grid">
+    <div class="t-block right">
+      <span class="t-time">15:00</span>
+      <span class="t-label">сбор гостей</span>
+    </div>
+    <div class="t-arrow al">
+      <svg viewBox="0 0 260 150" fill="none">
+        <path d="M248 12 C170 12 72 18 36 112 L22 140" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+        <path d="M10 132 L22 148 L38 136" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="t-block left">
+      <span class="t-time">15:30</span>
+      <span class="t-label">церемония</span>
+    </div>
+    <div class="t-arrow ar">
+      <svg viewBox="0 0 260 150" fill="none">
+        <path d="M12 12 C90 12 188 18 224 112 L238 140" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+        <path d="M250 132 L238 148 L222 136" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="t-block right">
+      <span class="t-time">16:00</span>
+      <span class="t-label">начало банкета</span>
+    </div>
+    <div class="t-arrow al">
+      <svg viewBox="0 0 300 148" fill="none">
+        <path d="M278 14 C196 34 98 56 48 118 L26 142" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+        <path d="M12 134 L26 148 L42 136" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="t-block left">
+      <span class="t-time">21:00</span>
+      <span class="t-label">вынос торта</span>
+    </div>
+    <div class="t-arrow ar">
+      <svg viewBox="0 0 280 112" fill="none">
+        <path d="M16 16 C88 16 188 44 252 90" stroke="white" stroke-width="5.5" stroke-linecap="round"/>
+        <path d="M262 76 L254 97 L236 90" stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="t-block right" style="margin-bottom:8px;">
+      <span class="t-time">23:00</span>
+      <span class="t-label">завершение вечера</span>
+    </div>
+  </div>
+</section>
+
+<!-- ======== BLOCK 5: DRESSCODE ======== -->
+<section class="b5">
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span>ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; </span>
+      <span>ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; ДРЕСКОД &nbsp; </span>
+    </div>
+  </div>
+  <div class="b5-title">цветовая<br>палитра</div>
+  <div class="b5-sub">любые оттенки, которые<br>напоминают вам о солнце</div>
+  <div class="circles-row" style="gap:0;">
+    <div class="cdot" style="width:58px;height:58px;background:#f0efa8;margin-left:-29px;"></div>
+    <div class="cdot" style="width:86px;height:86px;background:#f5d800;margin:0 3px;"></div>
+    <div class="cdot" style="width:86px;height:86px;background:#f59030;margin:0 3px;"></div>
+    <div class="cdot" style="width:86px;height:86px;background:#f56018;margin:0 3px;"></div>
+    <div class="cdot" style="width:86px;height:86px;background:#f52010;margin:0 3px;"></div>
+    <div class="cdot" style="width:58px;height:58px;background:#b80000;margin-right:-29px;"></div>
+  </div>
+</section>
+
+<!-- ======== BLOCK 6: ANKETA ======== -->
+<section class="b6">
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span style="color:#e84020;">АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; </span>
+      <span style="color:#e84020;">АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; АНКЕТА &nbsp; </span>
+    </div>
+  </div>
+  <div class="anketa-card">
+    <div class="anketa-title">подтвердите<br>присутствие</div>
+    <input class="f-input" type="text" placeholder="имя">
+    <label class="check-row">
+      <input type="radio" name="attend" value="yes">
+      <div class="cbox"></div>
+      <span class="clabel">я приду</span>
+    </label>
+    <label class="check-row">
+      <input type="radio" name="attend" value="no">
+      <div class="cbox"></div>
+      <span class="clabel">я не приду</span>
+    </label>
+    <div class="alco-title">пожелания по алкоголю</div>
+    <label class="check-row">
+      <input type="checkbox">
+      <div class="cbox"></div>
+      <span class="clabel">шампанское</span>
+    </label>
+    <label class="check-row">
+      <input type="checkbox">
+      <div class="cbox"></div>
+      <span class="clabel">красное вино</span>
+    </label>
+    <label class="check-row">
+      <input type="checkbox">
+      <div class="cbox"></div>
+      <span class="clabel">белое вино</span>
+    </label>
+    <label class="check-row">
+      <input type="checkbox">
+      <div class="cbox"></div>
+      <span class="clabel">водка</span>
+    </label>
+    <label class="check-row">
+      <input type="checkbox">
+      <div class="cbox"></div>
+      <span class="clabel">коньяк</span>
+    </label>
+    <label class="check-row">
+      <input type="checkbox">
+      <div class="cbox"></div>
+      <span class="clabel">не пью</span>
+    </label>
+    <button class="submit-btn" onclick="alert('Спасибо! Ответ отправлен!')">отправить</button>
+  </div>
+</section>
+
+<!-- ======== BLOCK 7: CONTACTS ======== -->
+<section class="b7">
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span style="color:#e84020;">КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; </span>
+      <span style="color:#e84020;">КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; КОНТАКТЫ &nbsp; </span>
+    </div>
+  </div>
+  <div class="b7-text">
+    если у вас возникнут вопросы, то<br>
+    вы можете обращаться к нашим<br>
+    организаторам
+  </div>
+  <span class="b7-name">Валерия</span>
+  <span class="b7-name">Анастасия</span>
+  <div class="ticker" style="margin-top:26px;">
+    <div class="ticker-inner">
+      <span style="color:white;">ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; </span>
+      <span style="color:white;">ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; </span>
+    </div>
+  </div>
+</section>
+
+<!-- ======== BLOCK 8: FOOTER ======== -->
+<section class="b8">
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span>ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; </span>
+      <span>ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; ЖДЁМ &nbsp; </span>
+    </div>
+  </div>
+  <span class="b8-title">мы ждём вас!</span>
+  <div class="b8-hearts">
+    <svg viewBox="0 0 380 268" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <path d="M104 73 C104 52 84 36 70 46 C58 53 56 68 70 82 L104 118 L138 82 C152 68 150 53 138 46 C124 36 104 52 104 73Z"/>
+        <circle cx="92" cy="81" r="3" fill="white"/>
+        <circle cx="106" cy="78" r="3" fill="white"/>
+        <path d="M88 90 Q98 98 110 91"/>
+        <path d="M70 84 C50 78 32 72 14 60"/>
+        <path d="M138 84 C156 90 174 90 190 86"/>
+        <path d="M102 121 L102 190"/>
+        <path d="M102 190 L86 222 L74 246"/>
+        <path d="M102 190 L116 222 L124 246"/>
+      </g>
+      <g stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+        <path d="M276 73 C276 52 296 36 310 46 C322 53 324 68 310 82 L276 118 L242 82 C228 68 230 53 242 46 C256 36 276 52 276 73Z"/>
+        <circle cx="264" cy="81" r="3" fill="white"/>
+        <circle cx="278" cy="78" r="3" fill="white"/>
+        <path d="M260 90 Q270 98 282 91"/>
+        <path d="M242 84 C224 90 206 90 190 86"/>
+        <path d="M310 84 C330 78 348 72 366 60"/>
+        <path d="M278 121 L278 190"/>
+        <path d="M278 190 L262 222 L250 246"/>
+        <path d="M278 190 L292 222 L300 246"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.check-row').forEach(row => {
+  row.addEventListener('click', function(e) {
+    e.preventDefault();
+    const input = this.querySelector('input');
+    if (input.type === 'checkbox') {
+      input.checked = !input.checked;
+    } else {
+      document.querySelectorAll(`input[name="${input.name}"]`).forEach(r => r.checked = false);
+      input.checked = true;
+    }
+    // trigger re-render
+    input.dispatchEvent(new Event('change'));
+  });
+});
+</script>
+
+</body>
+</html>

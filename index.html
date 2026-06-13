@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на свадьбу</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="lava-lamp">
+        <div class="spot spot-1"></div>
+        <div class="spot spot-2"></div>
+        <div class="spot spot-3"></div>
+        <div class="spot spot-4"></div>
+        <div class="spot spot-5"></div>
+    </div>
+
+    <div class="container">
+        <div class="desktop-column desktop-column--left">
+            <div class="polaroid-container">
+                <div class="polaroid">
+                    <img src="/images/photos/photo_1.svg" alt="Мы">
+                    мы женимся!
+                </div>
+            </div>
+
+            <div class="section-title section-title--center">
+                <h2 class="brush-title"><span>КОГДА?</span></h2>
+            </div>
+
+            <div class="date-section">
+                <span>АВГУСТ</span>
+                <span class="big-num">22</span>
+                <span>2026</span>
+            </div>
+
+            <div class="section-title section-title--left">
+                <h2 class="brush-title">ГДЕ?</h2>
+            </div>
+
+            <div class="where-section">
+                <div class="where-text">
+                    <h3>Огни<br>Саранска</h3>
+                    <p>г. Саранск<br>пр. 70 лет Октября, 100/3</p>
+                </div>
+                <div class="polaroid right-tilt polaroid--compact">
+                    <img src="images/photos/photo_2.svg" alt="Огни Саранска">
+                    ПРАЗДНУЕМ ЗДЕСЬ
+                </div>
+            </div>
+
+            <div class="section-title section-title--center">
+                <h2 class="brush-title">ВО СКОЛЬКО?</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="time-item">
+                    <div class="time">15:00</div>
+                    <div class="event">сбор гостей</div>
+                </div>
+                <div class="time-item">
+                    <div class="time">15:30</div>
+                    <div class="event">церемония</div>
+                </div>
+                <div class="time-item">
+                    <div class="time">16:00</div>
+                    <div class="event">банкет</div>
+                </div>
+                <div class="time-item">
+                    <div class="time">21:00</div>
+                    <div class="event">вынос торта</div>
+                </div>
+                <div class="time-item">
+                    <div class="time">22:00</div>
+                    <div class="event">завершение</div>
+                </div>
+            </div>
+
+            <div class="dress-code">
+                <h2 class="brush-title">ДРЕСС-КОД</h2>
+                <p>любые солнечные оттенки,<br>выбирайте то, что нравится вам</p>
+                <div class="palette">
+                    <div class="color-circle" style="background-color: #fce4ec;"></div>
+                    <div class="color-circle" style="background-color: #f8bbd0;"></div>
+                    <div class="color-circle" style="background-color: #f06292;"></div>
+                    <div class="color-circle" style="background-color: #e91e63;"></div>
+                </div>
+                <div class="palette">
+                    <div class="color-circle" style="background-color: #fff9c4;"></div>
+                    <div class="color-circle" style="background-color: #fff176;"></div>
+                    <div class="color-circle" style="background-color: #ffb74d;"></div>
+                    <div class="color-circle" style="background-color: #ff7043;"></div>
+                    <div class="color-circle" style="background-color: #d84315;"></div>
+                </div>
+                <p>Дополнительные цвета для мужчин<br>белый и черный</p>
+                <div class="palette">
+                    <div class="color-circle" style="background-color: #ffffff; border: 2px solid #ccc;"></div>
+                    <div class="color-circle" style="background-color: #000000;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="desktop-column desktop-column--right">
+            <div class="section-title section-title--center">
+                <h2 class="brush-title">АНКЕТА</h2>
+            </div>
+            <form class="rsvp-form" id="rsvpForm">
+                <h3 style="text-align: center; margin-bottom: 10px;">подтвердите присутствие</h3>
+
+                <input type="text" id="guestName" name="name" placeholder="Имя Фамилия" required>
+
+                <div class="checkbox-group">
+                    <input type="radio" id="attendYes" name="attendance" value="yes" required>
+                    <label for="attendYes">я приду</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="radio" id="attendNo" name="attendance" value="no">
+                    <label for="attendNo">я не приду</label>
+                </div>
+
+                <h3 style="text-align: center; margin: 20px 0 10px 0;">пожелания по алкоголю</h3>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="alc1" name="alcohol" value="Белое сухое/полусухое">
+                    <label for="alc1">белое вино сухое/полусухое</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="alc2" name="alcohol" value="Белое сладкое/полусладкое">
+                    <label for="alc2">белое вино сладкое/полусладкое</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="alc3" name="alcohol" value="Красное вино">
+                    <label for="alc3">красное вино</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="alc4" name="alcohol" value="Водка">
+                    <label for="alc4">водка</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="alc5" name="alcohol" value="Коньяк">
+                    <label for="alc5">коньяк</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="alc6" name="alcohol" value="Безалкогольные">
+                    <label for="alc6">безалкогольные напитки</label>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">ОТПРАВИТЬ</button>
+            </form>
+
+            <div class="contacts">
+                <p>если у вас возникнут вопросы,<br>то вы можете обратиться к<br>нашим организаторам</p>
+                <div class="contact-pill">
+                    Анастасия<br>+7 (937) 516-23-10
+                </div>
+                <div class="contact-pill">
+                    Валерия<br>+7 (999) 155-88-11
+                </div>
+            </div>
+
+            <div class="polaroid right-tilt">
+                <img src="images/photos/photo_3.svg" alt="Ждем вас">
+                МЫ ЖДЁМ ВАС!
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.0"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
