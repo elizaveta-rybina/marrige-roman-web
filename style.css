@@ -1,8 +1,21 @@
+/* =========================================
+   ПОДКЛЮЧЕНИЕ ШРИФТОВ
+   ========================================= */
 @font-face {
 	font-family: 'Prosorova Nastasia';
 	src: url('./Prosorovanastasiafont-Regular.ttf') format('truetype');
 	font-weight: 400;
 	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Bryndan Write';
+	/* Заменили пробел на %20, чтобы сервер не терял файл */
+	src: url('./ofont.ru_Bryndan%20Write.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+	/* Это магическое свойство запретит браузеру скрывать текст! */
+	font-display: swap;
 }
 
 :root {
@@ -13,109 +26,118 @@
 	--white: #ffffff;
 }
 
-/* Правильный базовый сброс стилей */
+/* =========================================
+   БАЗОВЫЙ СБРОС И КАРКАС
+   ========================================= */
 * {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
 
+html {
+	overflow-x: hidden;
+	max-width: 100%;
+}
+
 body {
+	background-color: var(--bg-top);
 	min-height: 100vh;
 	position: relative;
 	font-family: 'Prosorova Nastasia', sans-serif;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding-bottom: 50px;
+	padding-bottom: clamp(50px, 8vw, 80px);
 	overflow-x: hidden;
+	max-width: 100%;
 }
 
-/* Контейнер-подложка для фона */
+/* =========================================
+   ФОН (ЛАВОВАЯ ЛАМПА)
+   ========================================= */
 .lava-lamp {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background: linear-gradient(135deg, #FFC800 0%, #FF404C 100%);
+	width: 100%;
+	height: 100%;
+	background: #FFC800;
 	z-index: -1;
 	overflow: hidden;
 	pointer-events: none;
 }
 
-/* Общие стили для статичных пятен лавовой лампы */
 .spot {
 	position: absolute;
 	border-radius: 50%;
-	/* Сильное размытие (60px-80px) превращает круги в мягкие «акварельные» пятна */
-	filter: blur(70px);
-	mix-blend-mode: multiply;
-	/* Красиво смешивает красный цвет с желтым фоном */
-	opacity: 0.75;
-	/* Делает пятна полупрозрачными и нежными */
+	filter: blur(80px);
+	opacity: 0.85;
 }
 
-/* Расставляем пятна по разным углам экрана, меняя размеры и цвета */
+/* Делаем пятна адаптивными через clamp и vw */
 .spot-1 {
-	width: 320px;
-	height: 320px;
-	top: -50px;
-	left: -80px;
+	width: clamp(200px, 40vw, 400px);
+	height: clamp(200px, 40vw, 400px);
+	top: -5%;
+	left: -10%;
 	background-color: #FF404C;
-	/* Насыщенный красный */
 }
 
 .spot-2 {
-	width: 480px;
-	height: 480px;
-	top: 20%;
-	right: -180px;
-	background-color: #d13030;
-	/* Твой фирменный темный оттенок */
+	width: clamp(400px, 80vw, 800px);
+	height: clamp(400px, 80vw, 800px);
+	top: 15%;
+	right: -20%;
+	background-color: #FF404C;
 }
 
 .spot-3 {
-	width: 280px;
-	height: 280px;
-	bottom: 35%;
-	left: -60px;
+	width: clamp(300px, 60vw, 600px);
+	height: clamp(300px, 60vw, 600px);
+	top: 35%;
+	left: -15%;
 	background-color: #FF404C;
 }
 
 .spot-4 {
-	width: 400px;
-	height: 400px;
-	bottom: -120px;
-	right: 10%;
-	background-color: #d13030;
+	width: clamp(350px, 70vw, 700px);
+	height: clamp(350px, 70vw, 700px);
+	top: 65%;
+	right: -15%;
+	background-color: #FF404C;
 }
 
 .spot-5 {
-	width: 220px;
-	height: 220px;
-	top: 50%;
-	left: 35%;
-	background-color: #FF404C;
-	opacity: 0.5;
-	/* Чуть бледнее в самом центре */
+	width: clamp(250px, 50vw, 500px);
+	height: clamp(250px, 50vw, 500px);
+	bottom: 2%;
+	left: -10%;
+	background-color: #FFC800;
 }
 
+/* =========================================
+   КОНТЕЙНЕРЫ И СЕТКА
+   ========================================= */
 .container {
-	max-width: 480px;
+	/* На мобилке 100% с отступами, на десктопе расширится */
+	max-width: 1360px;
 	width: 100%;
-	padding: 20px;
+	padding: clamp(20px, 4vw, 32px) clamp(15px, 4vw, 24px);
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
+	gap: clamp(40px, 8vw, 60px);
 }
 
 .desktop-column {
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
+	gap: clamp(32px, 6vw, 40px);
 }
 
+/* =========================================
+   ЗАГОЛОВКИ (МАЗКИ)
+   ========================================= */
 .section-title {
 	width: 100%;
 	display: flex;
@@ -130,57 +152,107 @@ body {
 }
 
 h2.brush-title {
-	font-family: inherit;
-	background-color: var(--white);
-	color: var(--text-color);
-	padding: 10px 30px;
-	border-radius: 30px 10px 40px 15px;
+	position: relative;
+	font-family: 'Prosorova Nastasia', sans-serif;
+	text-transform: uppercase;
+	font-size: clamp(32px, 6vw, 48px);
+	/* Адаптивный размер */
 	display: inline-block;
-	font-size: 32px;
-	text-align: center;
+	padding: clamp(10px, 2vw, 20px) clamp(20px, 4vw, 30px);
+	background-color: transparent;
+	color: #000000;
+	mix-blend-mode: screen;
 }
 
+h2.brush-title::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	width: 250%;
+	min-width: 280px;
+	height: 140%;
+	background-image: url('images/bg-images/bg_cloud.svg');
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: -1;
+}
+
+h2.brush-title span {
+	color: #000000;
+}
+
+.section-title--center .brush-title {
+	transform: translateX(10vw);
+}
+
+.section-title--when .brush-title {
+	transform: none
+}
+
+.section-title--when .brush-title::after {
+	left: 50%;
+	/* Центрируем сам белый мазок */
+	transform: translate(-50%, -50%);
+	/* Выравниваем его строго за текстом */
+	background-position: center;
+}
+
+.section-title--center .brush-title::after {
+	left: 65%;
+	transform: translate(-40%, -50%);
+	background-position: left center;
+}
+
+.section-title--left .brush-title {
+	transform: translateX(5vw);
+}
+
+.section-title--left .brush-title::after {
+	left: 50%;
+	transform: translate(-60%, -50%);
+	background-position: right center;
+}
+
+/* =========================================
+   БЛОК НАЧАЛО (ПОЛАРОИД)
+   ========================================= */
 .polaroid-container {
-  position: relative; 
-  width: min(100%, 400px);
-  margin: 0 auto 40px auto; 
-  padding: 40px 0; 
-  z-index: 1;
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+	margin: 0 auto clamp(20px, 4vw, 40px) auto;
+	padding: clamp(20px, 4vw, 40px) 0;
+	z-index: 1;
 }
 
-/* Создаем фон отдельным слоем, который умеет ломать границы контейнера */
 .polaroid-container::before {
-  content: '';
-  position: absolute;
-  /* Поднимаем фон на 60px вверх (20px от контейнера + 40px от самого блока), чтобы он прилип к краю экрана */
-  top: -60px; 
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  /* Делаем фон выше, чтобы компенсировать сдвиг и оставить место для размытия */
-  height: calc(100% + 120px); 
-  background-image: url('images/bg-images/bg_love.svg');
-  background-size: cover; 
-  background-position: top center; /* Привязываем к верху */
-  background-repeat: no-repeat;
-  z-index: -1; 
-  
-  /* Размываем фон к низу: сверху до 75% он четкий (black), а к 100% становится прозрачным */
-  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+	content: '';
+	position: absolute;
+	top: -60px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100vw;
+	height: calc(100% + 120px);
+	background-image: url('images/bg-images/bg_love.svg');
+	background-size: cover;
+	background-position: top center;
+	background-repeat: no-repeat;
+	z-index: -1;
+	-webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+	mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
 }
 
 .polaroid {
-	font-weight: 400;
+	font-family: 'Prosorova Nastasia', sans-serif;
 	text-transform: uppercase;
-	font-size: 28px;
+	font-size: clamp(22px, 5vw, 28px);
 	line-height: 100%;
-	letter-spacing: 0%;
 	background: var(--white);
 	transform: rotate(11deg);
-	padding: 10px;
+	padding: clamp(8px, 2vw, 12px);
 	color: #FF3F3E;
 	text-align: center;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .polaroid img {
@@ -189,66 +261,34 @@ h2.brush-title {
 	height: auto;
 	display: block;
 	min-height: 200px;
+	margin-bottom: 10px;
 }
 
 .polaroid.right-tilt {
 	transform: rotate(4deg);
 }
 
-.polaroid--compact {
-	width: 180px;
-	font-size: 16px;
+/* Блок конец - Исключение */
+.polaroid.end-polaroid {
+	text-transform: none;
+	max-width: 400px;
+	margin: 0 auto;
 }
 
-.polaroid--compact img {
-	min-height: 120px;
-}
-
-h2.brush-title {
-	position: relative;
-	font-family: inherit;
-	font-size: 48px;
-	text-align: center;
-	display: inline-block;
-	padding: 20px 30px;
-	background-color: transparent;
-	border-radius: 0;
-	color: #000000;
-	/* Делаем текст черным */
-	mix-blend-mode: screen;
-	/* Черный станет прозрачным, а белое облако останется белым */
-}
-
-h2.brush-title::after {
-	content: '';
-	position: absolute;
-	top: 50%;
-	left: 65%;
-	transform: translate(-50%, -50%);
-	width: 250%;
-	min-width: 320px;
-	height: 180%;
-	background-image: url('images/bg-images/bg_cloud.svg');
-	background-repeat: no-repeat;
-	background-position: left center;
-	background-size: cover;
-	z-index: -1;
-}
-
-/* Очищаем span от старых глючных свойств (оставляем просто черный цвет) */
-h2.brush-title span {
-	color: #000000;
-}
-
+/* =========================================
+   БЛОК КОГДА
+   ========================================= */
 .date-section {
+	font-family: 'Prosorova Nastasia', sans-serif;
+	text-transform: uppercase;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* Возвращаем center вместо stretch */
-	font-size: 43px;
+	margin: 20px 0;
+	font-size: clamp(28px, 6vw, 43px);
+	/* Резиновый текст */
 	font-weight: bold;
-	gap: 30px;
-	/* Увеличиваем gap, так как уберем padding у спанов */
+	gap: clamp(15px, 4vw, 30px);
 	color: white;
 }
 
@@ -256,138 +296,411 @@ h2.brush-title span {
 	display: inline-flex;
 	align-items: center;
 	position: relative;
-	/* Необходимо для абсолютного позиционирования линии */
 }
 
-/* Рисуем разделители ровно 74px высотой */
 .date-section span:not(:last-child)::after {
 	content: '';
 	position: absolute;
-	right: -15px;
-	/* Сдвигаем линию ровно на середину отступа (gap / 2) */
+	right: calc(clamp(15px, 4vw, 30px) / -2);
 	top: 50%;
 	transform: translateY(-50%);
-	/* Центрируем по вертикали */
 	width: 2px;
-	height: 74px;
-	/* Жестко фиксируем нужную высоту */
+	height: clamp(40px, 10vw, 74px);
+	/* Резиновая линия */
 	background-color: var(--white);
 }
 
 .date-section .big-num {
-	font-size: 100px;
+	font-size: clamp(60px, 15vw, 100px);
 	line-height: 1;
-	/* Чтобы невидимый контейнер шрифта не смещал центрирование */
 }
 
+/* =========================================
+   БЛОК ГДЕ
+   ========================================= */
 .where-section {
-	display: flex;
-	align-items: center;
-	gap: 20px;
+	position: relative;
+	display: block !important;
+	width: 100%;
+	min-height: clamp(220px, 40vw, 260px);
+	margin-top: clamp(15px, 4vw, 30px);
+	margin-bottom: clamp(60px, 12vw, 90px);
 }
 
 .where-text {
-	flex: 1;
+	position: relative;
+	z-index: 2;
+	width: 55%;
 }
 
 .where-text h3 {
-	font-size: 28px;
+	font-family: 'Bryndan Write', cursive;
+	font-size: clamp(32px, 8vw, 43px);
+	font-weight: normal;
+	line-height: 1;
 	margin-bottom: 10px;
+	color: var(--white);
+}
+
+.separator-line {
+	width: clamp(100px, 30vw, 162px);
+	height: 2px;
+	background-color: var(--white);
+	border-radius: 5px;
+	margin-bottom: 15px;
+	opacity: 0.9;
+	transform: rotate(-1deg);
 }
 
 .where-text p {
-	font-size: 14px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: clamp(12px, 3vw, 16px);
+	color: var(--white);
+	line-height: 1.4;
+}
+
+.where-section .polaroid.polaroid--compact {
+	position: absolute;
+	top: -15px;
+	right: clamp(-60px, -10vw, -30px);
+	/* Адаптивный вылет за край */
+	max-width: none !important;
+	width: clamp(180px, 45vw, 240px) !important;
+	height: auto !important;
+	/* Автовысота для правильных пропорций */
+	transform: rotate(7.73deg) !important;
+	z-index: 1;
+	padding: 10px 10px 20px 10px;
+	box-shadow: -5px 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.where-section .polaroid.polaroid--compact img {
+	width: 100%;
+	height: clamp(130px, 35vw, 180px) !important;
+	object-fit: cover;
+}
+
+.where-section .polaroid.polaroid--compact .map-link {
+	display: block;
+	color: #FFC800 !important;
+	font-family: 'Montserrat', sans-serif !important;
+	font-weight: 500;
+	font-size: clamp(12px, 3vw, 16px);
+	text-decoration: underline;
+	text-transform: none;
+	border-bottom: none;
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* =========================================
+   БЛОК ВО СКОЛЬКО (ТАЙМЛАЙН)
+   ========================================= */
+
+/* На всех размерах заголовок и таймлайн идут во всю ширину */
+.desktop-column--left>.section-title:has(+ .timeline) {
+	width: 100vw;
+	position: relative;
+	margin-left: calc(-50vw + 50%);
+	margin-right: calc(-50vw + 50%);
+	padding-left: clamp(15px, 4vw, 24px);
+	padding-right: clamp(15px, 4vw, 24px);
+	justify-content: center;
 }
 
 .timeline {
+	position: relative;
+	/* <-- ВОТ ОН, ГЛАВНЫЙ СПАСИТЕЛЬ */
 	display: flex;
 	flex-direction: column;
-	gap: 20px;
-	position: relative;
+	gap: clamp(15px, 4vw, 30px);
+	/* Расстояние между карточками */
+	width: 100vw;
+	max-width: none;
+	/* Полная ширина экрана */
+	margin: 0;
+	margin-left: calc(-50vw + 50%);
+	margin-right: calc(-50vw + 50%);
+	padding: 0 clamp(15px, 4vw, 24px);
 }
 
 .time-item {
-	background: var(--white);
-	color: var(--text-color);
-	border: 3px solid var(--text-color);
-	border-radius: 10px;
-	padding: 10px;
-	width: fit-content;
-	text-align: center;
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+
+	background-image: url('/images/bg-images/Subtract.png');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	width: clamp(160px, 45vw, 240px);
+	/* Заменяем aspect-ratio на конкретную рассчитанную высоту */
+	height: clamp(120px, 34vw, 180px);
+
+	display: flex;
+	flex-direction: column;
+	padding: 0;
 	position: relative;
+	z-index: 2;
+	flex-shrink: 0;
+	/* Строгий запрет на сжатие */
 }
 
-.time-item:nth-child(even) {
-	align-self: flex-end;
+/* Раскидываем блоки змейкой */
+.time-item:nth-of-type(odd) {
+	/* 1, 3, 5 блоки (только среди div) - прижимаем вправо */
+	margin-left: auto;
+	margin-right: 0;
 }
 
+.time-item:nth-of-type(even) {
+	/* 2, 4 блоки (только среди div) - прижимаем влево */
+	margin-left: 0;
+	margin-right: auto;
+}
+
+/* =========================================
+   СТИЛИ ДЛЯ СТРЕЛОЧЕК ТАЙМЛАЙНА
+   ========================================= */
+.timeline-arrow {
+	position: absolute;
+	z-index: 1;
+	height: auto;
+	pointer-events: none;
+}
+
+.arrow-1 {
+	top: 10%;
+	left: 15%;
+	transform: translateY(-50%);
+	width: clamp(90px, 28vw, 140px);
+}
+
+.arrow-2 {
+	top: 32%;
+	right: 15%;
+	transform: translateY(-50%);
+	width: clamp(90px, 28vw, 140px);
+}
+
+.arrow-3 {
+	top: 67%;
+	left: 57%;
+	transform: translateY(-50%);
+	width: clamp(90px, 28vw, 140px);
+}
+
+.arrow-4 {
+	top: 87%;
+	right: 55%;
+	transform: translateY(-50%);
+	width: clamp(90px, 28vw, 140px);
+}
+
+
+/* Настройки времени (верхняя прозрачная часть) */
 .time-item .time {
-	font-size: 24px;
-	font-weight: bold;
+	font-family: 'Bryndan Write', cursive;
+	color: var(--white);
+	font-size: clamp(38px, 10vw, 54px);
+	font-weight: normal;
+
+	/* Заменяем flex: 1 на жесткие проценты */
+	height: 70%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-top: 5px;
 }
 
+/* Настройки описания (нижняя белая часть) */
 .time-item .event {
-	font-family: inherit;
-	font-size: 20px;
+	font-family: 'Bryndan Write', cursive;
+	color: #FF3643;
+	font-size: clamp(18px, 5vw, 24px);
+
+	/* Жесткие проценты высоты */
+	height: 30%;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 5px;
 }
 
-.dress-code {
-	text-align: center;
-}
+/* =========================================
+   БЛОК ДРЕСС-КОД
+   ========================================= */
 
-.dress-code p {
-	text-align: center;
-	margin-top: 15px;
-	font-size: 14px;
-}
-
-.palette {
+/* Контейнер на всю ширину экрана */
+.dress-code-section {
+	position: relative;
+	width: 100vw;
+	margin-left: calc(-50vw + 50%);
+	/* Хак для выхода из контейнера на всю ширину */
+	margin-right: calc(-50vw + 50%);
+	padding: clamp(60px, 10vw, 100px) clamp(15px, 4vw, 24px);
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	text-align: center;
+	z-index: 1;
+}
+
+/* Растянутая белая клякса-фон */
+.dress-code-bg {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	/* Делаем его супер-широким */
+	width: clamp(1200px, 250vw, 3500px);
+	/* Делаем его гораздо выше самого контента */
+	height: 100%;
+
+	background-image: url('images/bg-images/colors_bg.svg');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	z-index: -1;
+}
+
+/* Обёртка контента, чтобы он не разъезжался слишком широко */
+.dress-code-content {
+	max-width: 600px;
+	position: relative;
+	z-index: 2;
+}
+
+/* Заголовок ДРЕСС-КОД (Bryndan Write, градиент) */
+.dress-code-title {
+	font-family: 'Bryndan Write', cursive;
+	font-size: clamp(48px, 10vw, 72px);
+	text-transform: none;
+	margin-bottom: clamp(15px, 3vw, 25px);
+	background: linear-gradient(135deg, #FFC800 0%, #FF3643 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: transparent;
+}
+
+/* Описание (Prosorova Nastasia) */
+.dress-code-desc {
+	font-family: 'Prosorova Nastasia', sans-serif;
+	font-size: clamp(20px, 5vw, 28px);
+	/* Теплый оранжевый цвет как на макете */
+	color: #F0812F;
+	line-height: 1.3;
+	margin-bottom: clamp(20px, 5vw, 35px);
+	text-transform: none;
+}
+
+/* Отступы специально для мужского текста */
+.men-desc {
+	margin-top: clamp(20px, 5vw, 35px);
+	margin-bottom: clamp(15px, 4vw, 25px);
+}
+
+/* Сетка для картинок-клякс */
+.palette-blobs {
+	display: flex;
 	flex-wrap: wrap;
-	gap: 10px;
-	margin: 15px 0;
+	justify-content: center;
+	gap: clamp(12px, 2.5vw, 20px);
 }
 
-.color-circle {
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: #fff;
-	box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+.main-palette-img {
+	width: 100vw;
+	max-width: 500px;
+	/* Ограничиваем максимальную ширину для планшетов/десктопов */
+	height: auto;
+	margin: 0 auto;
+	display: block;
 }
 
+/* Остальные стили для мужских клякс оставляем как были */
+.palette-blobs {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: clamp(15px, 3vw, 25px);
+}
+
+.palette-blobs--men img {
+	width: clamp(80px, 22vw, 120px);
+	transition: transform 0.3s ease;
+}
+
+.palette-blobs--men .white {
+	transform: translateX(8px);
+	width: clamp(80px, 22vw, 120px);
+}
+
+.palette-blobs--men img:hover {
+	transform: scale(1.1) rotate(5deg);
+}
+
+/* Подчищаем старые стили для десктопа (если они были в @media) */
+@media (min-width: 900px) {
+	.dress-code-desc {
+		font-size: clamp(24px, 2.4vw, 32px);
+	}
+}
+
+/* =========================================
+   АНКЕТА И КОНТАКТЫ
+   ========================================= */
 .rsvp-form {
 	background: rgba(255, 255, 255, 0.95);
-	padding: 20px;
+	padding: clamp(15px, 4vw, 30px);
 	border-radius: 15px;
 	color: var(--text-color);
-	font-family: inherit;
-	font-size: 22px;
 	border: 2px dashed var(--text-color);
+	width: 100%;
+}
+
+.rsvp-form,
+.rsvp-form input,
+.rsvp-form button,
+.rsvp-form h3,
+.checkbox-group label {
+	font-family: 'Bryndan Write', cursive;
+	text-transform: none;
+}
+
+.rsvp-form h3 {
+	font-size: clamp(20px, 5vw, 26px);
 }
 
 .rsvp-form input[type="text"] {
 	width: 100%;
-	padding: 10px;
-	margin: 10px 0 20px 0;
+	padding: 12px;
+	margin: 15px 0 25px 0;
 	border: 2px solid var(--text-color);
 	border-radius: 5px;
-	font-family: inherit;
+	font-size: clamp(16px, 4vw, 20px);
 }
 
 .checkbox-group {
 	display: flex;
 	align-items: center;
-	gap: 10px;
-	margin-bottom: 10px;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.checkbox-group label {
+	font-size: clamp(16px, 4vw, 20px);
+	cursor: pointer;
 }
 
 .checkbox-group input[type="radio"],
 .checkbox-group input[type="checkbox"] {
-	width: 20px;
-	height: 20px;
+	width: 22px;
+	height: 22px;
 	accent-color: var(--text-color);
+	cursor: pointer;
 }
 
 .submit-btn {
@@ -396,44 +709,52 @@ h2.brush-title span {
 	color: var(--white);
 	border: none;
 	padding: 15px;
-	font-size: 20px;
+	font-size: clamp(18px, 5vw, 22px);
 	font-weight: bold;
 	border-radius: 10px;
 	margin-top: 20px;
 	cursor: pointer;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: opacity 0.3s ease;
+}
+
+.submit-btn:hover {
+	opacity: 0.9;
 }
 
 .contacts {
 	text-align: center;
-	font-family: inherit;
-	font-size: 24px;
+	font-family: 'Bryndan Write', cursive;
+	text-transform: none;
+	font-size: clamp(18px, 5vw, 26px);
+	margin-bottom: 20px;
 }
 
 .contact-pill {
 	background: var(--white);
 	color: var(--text-color);
-	padding: 10px 20px;
+	padding: 12px 24px;
 	border-radius: 30px;
 	display: inline-block;
-	margin: 10px 0;
+	margin: 10px 5px;
 	font-weight: bold;
-	font-family: inherit;
-	font-size: 16px;
+	font-family: 'Bryndan Write', cursive;
+	text-transform: none;
+	font-size: clamp(16px, 4vw, 20px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
+/* =========================================
+   ДЕСКТОПНАЯ ВЕРСИЯ (СЕТКА)
+   ========================================= */
 @media (min-width: 900px) {
-	body {
-		padding-bottom: 80px;
-	}
-
 	.container {
-		max-width: 1360px;
-		padding: 32px 24px 80px;
 		display: grid;
-		grid-template-columns: minmax(0, 1.1fr) minmax(380px, 0.9fr);
-		gap: 40px;
+		grid-template-columns: 1fr;
 		align-items: start;
+		justify-items: stretch;
+		max-width: 1200px;
+		gap: clamp(56px, 4vw, 84px);
 	}
 
 	.polaroid-container::before {
@@ -442,59 +763,163 @@ h2.brush-title span {
 		mask-image: radial-gradient(closest-side, black 40%, transparent 100%);
 	}
 
-	h2.brush-title::after {
+	.section-title--center .brush-title,
+	.section-title--left .brush-title {
+		transform: none;
+	}
+
+	.section-title--center .brush-title::after,
+	.section-title--left .brush-title::after {
 		left: 50%;
-		width: 150%;
+		transform: translate(-50%, -50%);
+		width: 170%;
 		background-position: center;
 		background-size: 100% 100%;
 	}
 
-	.desktop-column {
-		gap: 32px;
+	h2.brush-title {
+		font-size: clamp(42px, 3.6vw, 66px);
+		padding: clamp(14px, 1.4vw, 24px) clamp(28px, 2.5vw, 40px);
 	}
 
 	.desktop-column--left {
-		padding-right: 12px;
+		padding-right: 0;
 	}
 
 	.desktop-column--right {
-		padding-left: 12px;
+		padding-left: 0;
 	}
 
 	.where-section {
 		align-items: flex-start;
+		min-height: 320px;
 	}
 
-	.polaroid {
-		width: min(100%, 520px);
-	}
-
-	.polaroid--compact {
-		width: 260px;
-		font-size: 18px;
-	}
-
-	.rsvp-form {
-		max-width: 100%;
-	}
-
-	.date-section {
-		font-size: 34px;
-	}
-
-	.date-section .big-num {
-		font-size: 60px;
+	.where-text {
+		width: 62%;
 	}
 
 	.where-text h3 {
-		font-size: 38px;
+		font-size: clamp(42px, 4.8vw, 58px);
 	}
 
-	.where-text p {
-		font-size: 18px;
+	.where-text p,
+	.where-section .polaroid.polaroid--compact .map-link {
+		font-size: clamp(16px, 1.6vw, 20px);
+	}
+
+	/* На десктопе карточка ГДЕ не должна улетать за экран, корректируем отступ */
+	.where-section .polaroid.polaroid--compact {
+		right: 0;
+		width: clamp(240px, 24vw, 320px) !important;
+	}
+
+	.where-section .polaroid.polaroid--compact img {
+		height: clamp(170px, 18vw, 240px) !important;
+	}
+
+	.polaroid {
+		width: min(100%, 680px);
+		font-size: clamp(26px, 2.2vw, 36px);
+		padding: clamp(12px, 1.2vw, 18px);
+	}
+
+	.polaroid img {
+		min-height: 280px;
+	}
+
+	.date-section {
+		font-size: clamp(36px, 4vw, 56px);
+		gap: clamp(22px, 2.6vw, 40px);
+	}
+
+	.date-section .big-num {
+		font-size: clamp(80px, 10vw, 140px);
+	}
+
+	.separator-line {
+		width: clamp(140px, 18vw, 220px);
+	}
+
+	.timeline {
+		max-width: none;
+		width: 100vw;
+		position: relative;
+		left: 50%;
+		right: 50%;
+		margin-left: -50vw;
+		margin-right: -50vw;
+		padding-left: clamp(20px, 4vw, 32px);
+		padding-right: clamp(20px, 4vw, 32px);
+		gap: clamp(22px, 2.8vw, 40px);
+	}
+
+	.desktop-column--left>.section-title:has(+ .timeline) {
+		width: 100vw;
+		position: relative;
+		left: 50%;
+		right: 50%;
+		margin-left: -50vw;
+		margin-right: -50vw;
+		justify-content: center;
+	}
+
+	.time-item {
+		width: clamp(220px, 26vw, 320px);
+		height: clamp(150px, 19vw, 220px);
+	}
+
+	.time-item .time {
+		font-size: clamp(48px, 5vw, 72px);
+	}
+
+	.time-item .event {
+		font-size: clamp(22px, 2.4vw, 30px);
+	}
+
+	.dress-code p {
+		font-size: clamp(16px, 1.8vw, 22px);
+	}
+
+	.color-circle {
+		width: clamp(42px, 4vw, 56px);
+		height: clamp(42px, 4vw, 56px);
+	}
+
+	.rsvp-form {
+		padding: clamp(24px, 2.5vw, 40px);
+	}
+
+	.rsvp-form h3 {
+		font-size: clamp(24px, 2.5vw, 34px);
+	}
+
+	.rsvp-form input[type="text"] {
+		padding: 16px;
+		font-size: clamp(18px, 1.8vw, 24px);
+	}
+
+	.checkbox-group label {
+		font-size: clamp(18px, 1.8vw, 24px);
+	}
+
+	.checkbox-group input[type="radio"],
+	.checkbox-group input[type="checkbox"] {
+		width: 26px;
+		height: 26px;
+	}
+
+	.submit-btn {
+		padding: 18px;
+		font-size: clamp(20px, 2vw, 26px);
 	}
 
 	.contacts {
-		font-size: 26px;
+		font-size: clamp(22px, 2.2vw, 32px);
+	}
+
+	.contact-pill {
+		font-size: clamp(18px, 1.8vw, 24px);
+		padding: 14px 28px;
 	}
 }

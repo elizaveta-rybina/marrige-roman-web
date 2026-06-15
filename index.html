@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приглашение на свадьбу</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
         <div class="desktop-column desktop-column--left">
             <div class="polaroid-container">
                 <div class="polaroid">
-                    <img src="/images/photos/photo_1.svg" alt="Мы">
+                    <img src="images/photos/photo_1.svg" alt="Мы">
                     мы женимся!
                 </div>
             </div>
@@ -37,67 +38,80 @@
             </div>
 
             <div class="section-title section-title--left">
-                <h2 class="brush-title">ГДЕ?</h2>
+                <h2 class="brush-title where-title">ГДЕ?</h2>
             </div>
 
             <div class="where-section">
                 <div class="where-text">
                     <h3>Огни<br>Саранска</h3>
-                    <p>г. Саранск<br>пр. 70 лет Октября, 100/3</p>
+
+                    <div class="separator-line"></div>
+
+                    <p>г. Саранске<br>пр. 70 лет Октября, 169В</p>
                 </div>
+
                 <div class="polaroid right-tilt polaroid--compact">
                     <img src="images/photos/photo_2.svg" alt="Огни Саранска">
-                    ПРАЗДНУЕМ ЗДЕСЬ
+                    <a href="https://yandex.ru/maps/org/ogni_saranska/8925690637/?ll=45.253890%2C54.190741&z=17.13"
+                        target="_blank" class="map-link">посмотреть на карте</a>
                 </div>
             </div>
 
-            <div class="section-title section-title--center">
+            <div class="section-title section-title--when">
                 <h2 class="brush-title">ВО СКОЛЬКО?</h2>
             </div>
 
             <div class="timeline">
                 <div class="time-item">
-                    <div class="time">15:00</div>
+                    <div class="time">15:30</div>
                     <div class="event">сбор гостей</div>
                 </div>
-                <div class="time-item">
-                    <div class="time">15:30</div>
-                    <div class="event">церемония</div>
-                </div>
+
+                <img src="images/bg-images/arrow1.svg" class="timeline-arrow arrow-1" alt="">
+
                 <div class="time-item">
                     <div class="time">16:00</div>
+                    <div class="event">церемония</div>
+                </div>
+
+                <img src="images/bg-images/arrow2.svg" class="timeline-arrow arrow-2" alt="">
+
+                <div class="time-item">
+                    <div class="time">17:00</div>
                     <div class="event">банкет</div>
                 </div>
+
+                <img src="images/bg-images/arrow3.svg" class="timeline-arrow arrow-3" alt="">
+
                 <div class="time-item">
                     <div class="time">21:00</div>
                     <div class="event">вынос торта</div>
                 </div>
+
+                <img src="images/bg-images/arrow4.svg" class="timeline-arrow arrow-4" alt="">
+
                 <div class="time-item">
                     <div class="time">22:00</div>
                     <div class="event">завершение</div>
                 </div>
             </div>
 
-            <div class="dress-code">
-                <h2 class="brush-title">ДРЕСС-КОД</h2>
-                <p>любые солнечные оттенки,<br>выбирайте то, что нравится вам</p>
-                <div class="palette">
-                    <div class="color-circle" style="background-color: #fce4ec;"></div>
-                    <div class="color-circle" style="background-color: #f8bbd0;"></div>
-                    <div class="color-circle" style="background-color: #f06292;"></div>
-                    <div class="color-circle" style="background-color: #e91e63;"></div>
-                </div>
-                <div class="palette">
-                    <div class="color-circle" style="background-color: #fff9c4;"></div>
-                    <div class="color-circle" style="background-color: #fff176;"></div>
-                    <div class="color-circle" style="background-color: #ffb74d;"></div>
-                    <div class="color-circle" style="background-color: #ff7043;"></div>
-                    <div class="color-circle" style="background-color: #d84315;"></div>
-                </div>
-                <p>Дополнительные цвета для мужчин<br>белый и черный</p>
-                <div class="palette">
-                    <div class="color-circle" style="background-color: #ffffff; border: 2px solid #ccc;"></div>
-                    <div class="color-circle" style="background-color: #000000;"></div>
+            <div class="dress-code-section">
+                <div class="dress-code-bg"></div>
+
+                <div class="dress-code-content">
+                    <h2 class="dress-code-title">ДРЕСС-КОД</h2>
+
+                    <p class="dress-code-desc">Любые солнечные оттенки.<br>Выбирайте те, что нравятся вам!</p>
+
+                    <img src="images/bg-images/colors.svg" alt="Цветовая палитра" class="main-palette-img">
+
+                    <p class="dress-code-desc men-desc">Дополнительные цвета для мужчин:<br>белый и чёрный</p>
+
+                    <div class="palette-blobs palette-blobs--men">
+                        <img class="white" src="images/bg-images/white.svg" alt="Белый цвет">
+                        <img src="images/bg-images/black_color.svg" alt="Черный цвет">
+                    </div>
                 </div>
             </div>
         </div>
@@ -160,14 +174,14 @@
                 </div>
             </div>
 
-            <div class="polaroid right-tilt">
+            <div class="polaroid right-tilt end-polaroid">
                 <img src="images/photos/photo_3.svg" alt="Ждем вас">
-                МЫ ЖДЁМ ВАС!
+                мы ждём вас!
             </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@14.0.0/dist/iife/sdk.min.js"></script>
     <script src="script.js"></script>
 </body>
 
