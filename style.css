@@ -325,23 +325,22 @@ body {
 	line-height: 1.4;
 }
 
-/* Контейнер малого полароида (С ГИГАНТСКИМ ВЫЛЕТОМ) */
 .where-section .polaroid.polaroid--compact {
-  position: absolute;
-  top: -30px;
-  right: 0;
-  transform: translateX(25%) rotate(7.73deg) !important; 
-  max-width: none !important;
-  width: clamp(180px, 52vw, 180px) !important;
-  height: auto !important;
-  z-index: 1;
-  background-color: transparent; 
-  background-image: url('images/bg-images/polaroid.svg'); 
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  box-shadow: none; 
-  padding: clamp(14px, 3.5vw, 18px) clamp(14px, 3.5vw, 18px) clamp(25px, 8vw, 45px) clamp(14px, 3.5vw, 18px);
+	position: absolute;
+	top: -30px;
+	right: 0;
+	transform: translateX(25%) rotate(7.73deg) !important;
+	max-width: none !important;
+	width: clamp(180px, 52vw, 180px) !important;
+	height: auto !important;
+	z-index: 1;
+	background-color: transparent;
+	background-image: url('images/bg-images/polaroid.svg');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	box-shadow: none;
+	padding: clamp(14px, 3.5vw, 18px) clamp(14px, 3.5vw, 18px) clamp(25px, 8vw, 45px) clamp(14px, 3.5vw, 18px);
 }
 
 .where-section .polaroid.polaroid--compact img {
@@ -381,14 +380,11 @@ body {
 
 .timeline {
 	position: relative;
-	/* <-- ВОТ ОН, ГЛАВНЫЙ СПАСИТЕЛЬ */
 	display: flex;
 	flex-direction: column;
-	gap: clamp(15px, 4vw, 30px);
-	/* Расстояние между карточками */
+	gap: clamp(10px, 3vw, 20px);
 	width: 100vw;
 	max-width: none;
-	/* Полная ширина экрана */
 	margin: 0;
 	margin-left: calc(-50vw + 50%);
 	margin-right: calc(-50vw + 50%);
@@ -404,23 +400,17 @@ body {
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: center;
-
 	width: clamp(160px, 45vw, 240px);
-	/* Заменяем aspect-ratio на конкретную рассчитанную высоту */
-	height: clamp(120px, 34vw, 180px);
-
+	height: clamp(95px, 26vw, 140px);
 	display: flex;
 	flex-direction: column;
 	padding: 0;
 	position: relative;
 	z-index: 2;
 	flex-shrink: 0;
-	/* Строгий запрет на сжатие */
 }
 
-/* Раскидываем блоки змейкой */
 .time-item:nth-of-type(odd) {
-	/* 1, 3, 5 блоки (только среди div) - прижимаем вправо */
 	margin-left: auto;
 	margin-right: 0;
 }
@@ -749,73 +739,128 @@ body {
 }
 
 .contacts {
-	display: flex;
-	flex-direction: column;
-	gap: 25px;
-	/* Расстояние между самостоятельными мазками */
-	width: 100%;
-	margin-top: 30px;
-	margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow: hidden; 
 }
 
-/* Общие правила для текстовых мазков */
+.contacts p {
+  font-family: 'Bryndan Write', cursive;
+  font-size: clamp(22px, 5vw, 24px);
+  color: white;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 25px;
+  padding: 0 clamp(15px, 4vw, 24px); 
+}
+
 .contact-pill {
-	font-family: 'Bryndan Write', cursive;
-	font-weight: bold;
-	font-size: clamp(24px, 6vw, 34px);
-	line-height: 1.3;
-	text-align: center;
-	background-size: 100% 100%;
-	/* Картинка мазка идеально растягивается под объем текста */
-	background-repeat: no-repeat;
-	background-position: center;
-	padding: clamp(25px, 6vw, 35px) clamp(45px, 10vw, 75px);
-	width: fit-content;
-
-	/* Сбрасываем старые круглые плашки */
-	box-shadow: none !important;
-	border-radius: 0 !important;
-	background-color: transparent !important;
+  display: flex;
+  width: 100%;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  margin-bottom: clamp(10px, 3vw, 20px); /* Расстояние между Настей и Лерой */
 }
 
-/* --- МАЗОК АНАСТАСИИ --- */
+/* Стили для самих SVG-картинок */
+.contact-img {
+  width: clamp(260px, 75vw, 360px); 
+  height: auto;
+  display: block;
+  filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.05));
+}
+
+/* --- АНАСТАСИЯ (Слева) --- */
 .contact-anastasia {
-	width: 100%;
-	color: #FF3643;
-	/* Красный текст */
-	background-image: url('images/bg-images/anastasia.svg');
-	/* Отдельный файл мазка Насти */
-	align-self: flex-start;
-	/* Прижимаем влево */
-	margin-left: -5vw;
-	/* Стильное смещение за экран */
+  justify-content: flex-start;
 }
 
-/* --- МАЗОК ВАЛЕРИИ --- */
+.contact-anastasia .contact-img {
+  /* Убираем сдвиг. Теперь картинка прижата ровно к левому краю экрана */
+  transform: none; 
+}
+
+/* --- ВАЛЕРИЯ (Справа) --- */
 .contact-valeria {
-	color: #F0812F;
-	/* Оранжевый текст */
-	background-image: url('images/bg-images/valeria.svg');
-	/* Отдельный файл мазка Леры */
-	align-self: flex-end;
-	/* Прижимаем вправо */
-	margin-right: -5vw;
-	/* Стильное смещение за экран */
+  justify-content: flex-end; 
+}
+
+.contact-valeria .contact-img {
+  /* Картинка прижата ровно к правому краю экрана */
+  transform: none; 
+}
+
+/* 💻 Корректировка для десктопа (экраны от 900px) */
+@media (min-width: 900px) {
+  .contacts {
+    flex-direction: row; 
+    flex-wrap: wrap; /* Разрешаем элементам переноситься */
+    justify-content: center;
+    gap: 40px;
+    overflow: visible;
+    /* На компе отменяем растягивание на весь экран */
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .contacts p {
+    width: 100%; /* Заставляем текст занять всю верхнюю строку */
+    margin-bottom: 10px;
+  }
+
+  .contact-pill {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  .contact-img {
+    width: 350px; 
+  }
 }
 
 /* =========================================
    ФОН "ЛЮБОВЬ" ДЛЯ ПОСЛЕДНЕГО ПОЛАРОИДА
    ========================================= */
-.polaroid-container--end {
-	margin-top: 30px;
+.final-polaroid-img {
+	display: block;
+	margin: 0 auto;
+	margin-top: 40px;
+	
+	/* Жесткие точные размеры из твоего макета */
+	width: 284px;
+	height: 311px;
+	
+	/* Точный угол ротации */
+	transform: rotate(8.59deg);
+	
+	/* Добавляем мягкую тень, чтобы полароид ожил и оторвался от фона */
+	filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.15));
 }
 
-/* Копируем паттерн с первого полароида, но меняем маску */
+.polaroid-container--end {
+	position: relative;
+	width: 100%;
+}
+
+/* Фон со словами "ЛЮБОВЬ" под картинкой */
 .polaroid-container--end::before {
+	content: '';
+	position: absolute;
 	top: -20px;
-	/* Переворачиваем маску: теперь она плавно растворяет текст ВВЕРХУ, а не внизу */
-	-webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
-	mask-image: linear-gradient(to top, black 50%, transparent 100%);
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100vw;
+	height: calc(100% + 120px);
+	background-image: url('images/bg-images/bg_love.svg');
+	background-size: cover;
+	background-position: top center;
+	background-repeat: no-repeat;
+	z-index: -1;
 }
 
 /* =========================================
