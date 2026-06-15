@@ -652,87 +652,143 @@ h2.brush-title span {
 /* =========================================
    АНКЕТА И КОНТАКТЫ
    ========================================= */
+/* =========================================
+   АНКЕТА И КОНТАКТЫ
+   ========================================= */
+
+/* Контейнер формы */
 .rsvp-form {
-	background: rgba(255, 255, 255, 0.95);
-	padding: clamp(15px, 4vw, 30px);
-	border-radius: 15px;
-	color: var(--text-color);
-	border: 2px dashed var(--text-color);
+	/* Убираем старый фон и пунктирную рамку */
+	background-color: transparent;
+	border: none;
+	border-radius: 0;
+
+	/* Ставим твою картинку с рамкой на фон (ВСТАВЬ СВОЕ НАЗВАНИЕ ФАЙЛА) */
+	background-image: url('images/bg-images/form_frame.svg');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	/* Увеличиваем внутренние отступы, чтобы текст не залезал на нарисованные края рамки */
+	padding: clamp(40px, 8vw, 60px) clamp(25px, 6vw, 40px);
 	width: 100%;
+	color: #FF3643;
 }
 
+/* Глобально задаем шрифт и красный цвет всему внутри анкеты */
 .rsvp-form,
 .rsvp-form input,
-.rsvp-form button,
 .rsvp-form h3,
 .checkbox-group label {
 	font-family: 'Bryndan Write', cursive;
 	text-transform: none;
+	color: #FF3643;
 }
 
 .rsvp-form h3 {
-	font-size: clamp(20px, 5vw, 26px);
+	font-size: clamp(24px, 6vw, 32px);
 }
 
+/* --- Стили для текстового поля (Имя Фамилия) --- */
 .rsvp-form input[type="text"] {
 	width: 100%;
-	padding: 12px;
-	margin: 15px 0 25px 0;
-	border: 2px solid var(--text-color);
-	border-radius: 5px;
-	font-size: clamp(16px, 4vw, 20px);
+	padding: 12px 15px;
+	margin: 10px 0 15px 0;
+	background-color: transparent;
+	border: 2px solid #FF3643;
+	/* Красная рамка */
+	border-radius: 8px;
+	/* Легкое скругление углов */
+	font-size: clamp(18px, 4vw, 22px);
+	outline: none;
 }
 
+/* Меняем цвет подсказки (плейсхолдера) */
+.rsvp-form input[type="text"]::placeholder {
+	color: rgba(255, 54, 67, 0.6);
+}
+
+/* --- Кастомные квадратики для выбора --- */
 .checkbox-group {
 	display: flex;
-	align-items: center;
-	gap: 12px;
-	margin-bottom: 12px;
+	align-items: flex-start;
+	/* Выравниваем по верхнему краю на случай длинного текста */
+	margin-bottom: 15px;
 }
 
-.checkbox-group label {
-	font-size: clamp(16px, 4vw, 20px);
-	cursor: pointer;
-}
-
+/* ПРЯЧЕМ стандартные браузерные кружки и галочки */
 .checkbox-group input[type="radio"],
 .checkbox-group input[type="checkbox"] {
-	width: 22px;
-	height: 22px;
-	accent-color: var(--text-color);
-	cursor: pointer;
+	display: none;
 }
 
-.submit-btn {
-	width: 100%;
-	background: linear-gradient(90deg, #ff7e5f, #feb47b);
-	color: var(--white);
-	border: none;
-	padding: 15px;
-	font-size: clamp(18px, 5vw, 22px);
-	font-weight: bold;
-	border-radius: 10px;
-	margin-top: 20px;
+/* Настраиваем текст */
+.checkbox-group label {
+	font-size: clamp(18px, 4vw, 22px);
 	cursor: pointer;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	display: flex;
+	align-items: center;
+	line-height: 1.1;
+}
+
+/* РИСУЕМ свои квадратики (добавляем их перед текстом) */
+.checkbox-group label::before {
+	content: '';
+	display: inline-block;
+	width: 28px;
+	height: 28px;
+	border: 2px solid #FF3643;
+	border-radius: 6px;
+	/* Скругленные углы квадратика */
+	margin-right: 12px;
+	background-color: transparent;
+	flex-shrink: 0;
+	/* Чтобы квадратик не сплющивался */
+	transition: all 0.2s ease;
+}
+
+/* Как выглядит квадратик, когда мы на него кликнули (выбрали) */
+.checkbox-group input:checked+label::before {
+	background-color: #FF3643;
+	/* Трюк: закрашиваем квадратик, но внутри делаем белую окантовку, чтобы выглядело как галочка-точка */
+	box-shadow: inset 0 0 0 5px #FFFFFF;
+}
+
+/* --- Кнопка ОТПРАВИТЬ --- */
+.submit-btn {
+	font-family: 'Bryndan Write', cursive;
+	transform: translateY(-5px);
+	text-transform: none;
+	width: 100%;
+	background: transparent;
+	color: white;
+	border: none;
+	padding: 10px;
+	font-size: clamp(22px, 5vw, 28px);
+	border-radius: 10px;
+	cursor: pointer;
 	transition: opacity 0.3s ease;
 }
 
 .submit-btn:hover {
-	opacity: 0.9;
+	opacity: 0.85;
 }
 
+/* Контакты организаторов */
 .contacts {
 	text-align: center;
 	font-family: 'Bryndan Write', cursive;
 	text-transform: none;
 	font-size: clamp(18px, 5vw, 26px);
 	margin-bottom: 20px;
+	color: var(--white);
+	/* Белый текст на фоне лавы */
 }
 
 .contact-pill {
 	background: var(--white);
-	color: var(--text-color);
+	color: #FF3643;
+	/* Красный текст внутри белой плашки */
 	padding: 12px 24px;
 	border-radius: 30px;
 	display: inline-block;
@@ -741,7 +797,7 @@ h2.brush-title span {
 	font-family: 'Bryndan Write', cursive;
 	text-transform: none;
 	font-size: clamp(16px, 4vw, 20px);
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================================
