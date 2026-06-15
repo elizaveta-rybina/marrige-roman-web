@@ -758,7 +758,7 @@ body {
 	margin-top: 40px;
 	width: 284px;
 	height: 311px;
-	transform: rotate(8.59deg);
+	transform: rotate(-8.59deg);
 	filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.15));
 }
 
@@ -783,203 +783,210 @@ body {
 }
 
 @media (max-width: 360px) {
-  .rsvp-form {
-    padding: 25px 25px; 
-    
-    background-image: url('images/bg-images/form_frame_340.svg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    margin: 0 auto;
-  }
+	.rsvp-form {
+		padding: 25px 25px;
 
-  .rsvp-form h3 { 
-    font-size: 18px; 
-    margin-bottom: 10px; 
-  }
-  
-  .rsvp-form input[type="text"] { 
-    font-size: 15px; 
-    padding: 10px 12px; 
-    margin: 5px 0 10px 0; 
-  }
-  
-  .checkbox-group { 
-    margin-bottom: 8px; 
-  }
-  
-  .checkbox-group label { 
-    font-size: 14px; 
-    line-height: 1.2;
-  }
-  
-  .checkbox-group label::before { 
-    width: 18px; 
-    height: 18px; 
-    margin-right: 8px; 
-  }
-  
-  .submit-btn { 
-    font-size: 18px; 
-    padding: 8px 0 0 0; 
-    height: 45px; /* Заменили min-height на жесткий height */
-  }
+		background-image: url('images/bg-images/form_frame_340.svg');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: stretch;
+		margin: 0 auto;
+	}
+
+	.rsvp-form h3 {
+		font-size: 18px;
+		margin-bottom: 10px;
+	}
+
+	.rsvp-form input[type="text"] {
+		font-size: 15px;
+		padding: 10px 12px;
+		margin: 5px 0 10px 0;
+	}
+
+	.checkbox-group {
+		margin-bottom: 8px;
+	}
+
+	.checkbox-group label {
+		font-size: 14px;
+		line-height: 1.2;
+	}
+
+	.checkbox-group label::before {
+		width: 18px;
+		height: 18px;
+		margin-right: 8px;
+	}
+
+	.submit-btn {
+		font-size: 18px;
+		padding: 8px 0 0 0;
+		height: 45px;
+		/* Заменили min-height на жесткий height */
+	}
 }
 
 @media (min-width: 420px) {
-  .rsvp-form {
-    background-image: url('images/bg-images/form_frame_470.svg');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+	.rsvp-form {
+		background-image: url('images/bg-images/form_frame_470.svg');
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    margin: 0 auto;
-    aspect-ratio: auto;
-    max-width: none;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: stretch;
+		margin: 0 auto;
+		aspect-ratio: auto;
+		max-width: none;
 
-    width: 370px;
-    height: 720px; /* Убрали min-height */
-    padding: 45px 50px;
-  }
+		width: 370px;
+		height: 720px;
+		/* Убрали min-height */
+		padding: 45px 50px;
+	}
 
-  .rsvp-form h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
+	.rsvp-form h3 {
+		font-size: 20px;
+		margin-bottom: 15px;
+	}
 
-  .rsvp-form input[type="text"] {
-    font-size: 16px;
-    padding: 10px;
-    margin: 5px 0 10px 0;
-  }
+	.rsvp-form input[type="text"] {
+		font-size: 16px;
+		padding: 10px;
+		margin: 5px 0 10px 0;
+	}
 
-  .checkbox-group label {
-    font-size: 16px;
-  }
+	.checkbox-group label {
+		font-size: 16px;
+	}
 
-  .checkbox-group label::before {
-    width: 22px;
-    height: 22px;
-    margin-right: 10px;
-  }
+	.checkbox-group label::before {
+		width: 22px;
+		height: 22px;
+		margin-right: 10px;
+	}
 
-  .submit-btn {
-    font-size: 20px;
-    padding: 10px 0 0 0;
-    margin-top: -10px;
-    height: 50px; /* Жесткий height */
-  }
+	.submit-btn {
+		font-size: 20px;
+		padding: 10px 0 0 0;
+		margin-top: -10px;
+		height: 50px;
+		/* Жесткий height */
+	}
 }
 
 /* Переопределяем размеры для 430px */
 @media (min-width: 430px) {
-  .rsvp-form {
-    width: 400px;
-    height: 720px;
-    padding: 35px 40px;
-  }
+	.rsvp-form {
+		width: 400px;
+		height: 720px;
+		padding: 35px 40px;
+	}
 
-  .rsvp-form h3 {
-    font-size: 22px;
-  }
+	.rsvp-form h3 {
+		font-size: 22px;
+	}
 
-  .rsvp-form input[type="text"] {
-    font-size: 18px;
-  }
+	.rsvp-form input[type="text"] {
+		font-size: 18px;
+	}
 
-  .checkbox-group label {
-    font-size: 18px;
-  }
+	.checkbox-group label {
+		font-size: 18px;
+	}
 
-  .checkbox-group label::before {
-    width: 24px;
-    height: 24px;
-  }
+	.checkbox-group label::before {
+		width: 24px;
+		height: 24px;
+	}
 
-  .submit-btn {
-    font-size: 22px;
-    margin-top: 20px;
-  }
+	.submit-btn {
+		font-size: 22px;
+		margin-top: 20px;
+	}
 }
 
 /* Переопределяем размеры для 500px */
 @media (min-width: 500px) {
-  .rsvp-form {
-    width: 470px;
-    height: 740px; /* Убрали min-height */
-    padding: 50px 60px;
-  }
+	.rsvp-form {
+		width: 470px;
+		height: 740px;
+		/* Убрали min-height */
+		padding: 50px 60px;
+	}
 
-  .rsvp-form h3 {
-    font-size: 26px;
-    margin-bottom: 20px;
-  }
+	.rsvp-form h3 {
+		font-size: 26px;
+		margin-bottom: 20px;
+	}
 
-  .rsvp-form input[type="text"] {
-    font-size: 20px;
-    padding: 12px 15px;
-    margin: 10px 0 15px 0;
-  }
+	.rsvp-form input[type="text"] {
+		font-size: 20px;
+		padding: 12px 15px;
+		margin: 10px 0 15px 0;
+	}
 
-  .checkbox-group label {
-    font-size: 20px;
-  }
+	.checkbox-group label {
+		font-size: 20px;
+	}
 
-  .checkbox-group label::before {
-    width: 26px;
-    height: 26px;
-    margin-right: 12px;
-  }
+	.checkbox-group label::before {
+		width: 26px;
+		height: 26px;
+		margin-right: 12px;
+	}
 
-  .submit-btn {
-    font-size: 24px;
-    padding: 35px 0 0 0;
-    margin-top: 10px;
-    height: 60px; /* Жесткий height */
-  }
+	.submit-btn {
+		font-size: 24px;
+		padding: 35px 0 0 0;
+		margin-top: 10px;
+		height: 60px;
+		/* Жесткий height */
+	}
 }
 
 @media (min-width: 550px) {
-  .rsvp-form {
-    width: 470px;
-    height: 740px; /* Убрали min-height */
-    padding: 50px 60px;
-  }
+	.rsvp-form {
+		width: 470px;
+		height: 740px;
+		/* Убрали min-height */
+		padding: 50px 60px;
+	}
 
-  .rsvp-form h3 {
-    font-size: 26px;
-    margin-bottom: 20px;
-  }
+	.rsvp-form h3 {
+		font-size: 26px;
+		margin-bottom: 20px;
+	}
 
-  .rsvp-form input[type="text"] {
-    font-size: 20px;
-    padding: 12px 15px;
-    margin: 10px 0 15px 0;
-  }
+	.rsvp-form input[type="text"] {
+		font-size: 20px;
+		padding: 12px 15px;
+		margin: 10px 0 15px 0;
+	}
 
-  .checkbox-group label {
-    font-size: 20px;
-  }
+	.checkbox-group label {
+		font-size: 20px;
+	}
 
-  .checkbox-group label::before {
-    width: 26px;
-    height: 26px;
-    margin-right: 12px;
-  }
+	.checkbox-group label::before {
+		width: 26px;
+		height: 26px;
+		margin-right: 12px;
+	}
 
-  .submit-btn {
-    font-size: 24px;
-    margin-top: 20px;
-    padding: 25px 0 0 0;
-    height: 60px; /* Жесткий height */
-  }
+	.submit-btn {
+		font-size: 24px;
+		margin-top: 20px;
+		padding: 25px 0 0 0;
+		height: 60px;
+		/* Жесткий height */
+	}
 }
 
 @media (min-width: 800px) {
