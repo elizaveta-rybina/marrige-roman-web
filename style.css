@@ -14,7 +14,7 @@
 }
 
 :root {
-	--bg-top: #FFC800;
+	--bg-top: #FFA600;
 	--bg-mid: #FF404C;
 	--bg-bottom: #f7b733;
 	--text-color: #d13030;
@@ -28,7 +28,7 @@
 }
 
 html {
-	overflow-x: hidden;
+	overflow-x: clip;
 	max-width: 100%;
 }
 
@@ -41,7 +41,7 @@ body {
 	flex-direction: column;
 	align-items: center;
 	padding-bottom: clamp(50px, 8vw, 80px);
-	overflow-x: hidden;
+	overflow-x: clip;
 	max-width: 100%;
 }
 
@@ -51,7 +51,7 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #FFC800;
+	background: #FFA600;
 	z-index: -1;
 	overflow: hidden;
 	pointer-events: none;
@@ -59,7 +59,6 @@ body {
 
 .spot {
 	position: absolute;
-	filter: blur(30px);
 	opacity: 1;
 }
 
@@ -315,19 +314,20 @@ body {
 .where-text p {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 500;
-	font-size: clamp(14px, 3vw, 18px);
+	font-size: clamp(12px, 3vw, 16px);
 	color: var(--white);
 	line-height: 1.4;
 }
 
 .where-section .polaroid.polaroid--compact {
+	margin-top: 20px;
 	position: absolute;
 	top: -30px;
 	right: 0;
-	transform: translateX(25%) rotate(7.73deg) !important;
+	transform: translateX(30%) rotate(7.73deg) !important;
 	max-width: none !important;
-	width: clamp(180px, 52vw, 180px) !important;
-	height: auto !important;
+	width: clamp(200px, 52vw, 220px) !important;
+	height: 100%;
 	z-index: 1;
 	background-color: transparent;
 	background-image: url('images/bg-images/polaroid.svg');
@@ -340,21 +340,20 @@ body {
 
 .where-section .polaroid.polaroid--compact img {
 	width: 100%;
-	height: clamp(110px, 30vw, 160px) !important;
+	height: 100%;
 	object-fit: cover;
 	margin-bottom: 0;
 }
 
 .where-section .polaroid.polaroid--compact .map-link {
 	display: block;
-	color: #FFC800 !important;
+	color: #FFA600 !important;
 	font-family: 'Montserrat', sans-serif !important;
 	font-weight: 500;
 	font-size: clamp(12px, 3vw, 16px);
 	text-decoration: underline;
 	text-transform: none;
 	border-bottom: none;
-	margin-top: clamp(5px, 1.5vw, 10px);
 	text-align: center;
 }
 
@@ -505,7 +504,7 @@ body {
 	font-size: clamp(48px, 10vw, 72px);
 	text-transform: none;
 	margin-bottom: clamp(15px, 3vw, 25px);
-	background: linear-gradient(135deg, #FFC800 0%, #FF3643 100%);
+	background: linear-gradient(135deg, #FFA600 0%, #FF3643 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
@@ -751,15 +750,15 @@ body {
 		width: 350px;
 	}
 }
-
 .final-polaroid-img {
 	display: block;
-	margin: 0 auto;
-	margin-top: 40px;
+	margin: 40px auto 0 auto; /* Упростили запись маржинов */
 	width: 284px;
 	height: 311px;
 	transform: rotate(-8.59deg);
 	filter: drop-shadow(0px 10px 25px rgba(0, 0, 0, 0.15));
+	position: relative;
+	z-index: 2; /* На всякий случай жестко выводим фотку поверх фона */
 }
 
 .polaroid-container--end {
@@ -770,14 +769,21 @@ body {
 .polaroid-container--end::before {
 	content: '';
 	position: absolute;
-	top: -20px;
+	
+	/* Привязываем псевдоэлемент ровно к центру контейнера */
+	top: 50%;
 	left: 50%;
-	transform: translateX(-50%);
-	width: 100vw;
+
+	/* Сдвигаем его назад на половину собственной ширины/высоты и задаем нужный угол 7.18° */
+	transform: translate(-50%, -45%) rotate(0);
+
+	/* Берем ширину чуть с запасом, чтобы при повороте не оголились пустые углы */
+	width: 110vw;
 	height: calc(100% + 120px);
+
 	background-image: url('images/bg-images/bg_love.svg');
 	background-size: cover;
-	background-position: top center;
+	background-position: center; /* Обязательно center, чтобы надпись была точно за фото */
 	background-repeat: no-repeat;
 	z-index: -1;
 }
